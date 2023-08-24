@@ -2,27 +2,19 @@ import os
 import dotenv
 import discord
 from helpers import presence
-from commands import utils, encoding, encryption
-import commands
+from user_commands import utils, encoding, encryption
+from discord.ext import commands
 
 # basic setup
 dotenv.load_dotenv()
-bot = discord.Client(intents=discord.Intents.all())
+bot = commands.Bot(command_prefix=".", intents=discord.Intents.all(), help_command=None)
 
 @bot.event
 async def on_ready():
     await presence.on_ready(bot)
-
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
-    if message.content[0] != ".":
-        return
-    
-    await utils.on_message(bot, message)
-    await encoding.on_message(bot, message)
-    await encryption.on_message(bot, message)
+    await bot.add_cog(utils.utils_cog(bot))
+    await bot.add_cog(encoding.encoding_cog(bot))
+    await bot.add_cog(encryption.encryption_cog(bot))
+    print("bot ready")
 
 bot.run(os.getenv("BOT_TOKEN"))
