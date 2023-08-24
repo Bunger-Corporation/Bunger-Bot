@@ -31,6 +31,7 @@ class fun_cog(commands.Cog):
     async def repeat(self, ctx, *, text):
         if text.startswith("http://") or text.startswith("https://") or text.startswith("www."):
             await ctx.send("I'm not a very big fan of urls:(")
+            return
 
         text = "".join(filter(str.isalnum, text))
 
