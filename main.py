@@ -2,7 +2,7 @@ import os
 import dotenv
 import discord
 from helpers import presence
-from user_commands import utils, encoding, encryption
+from cogs import utils, encoding, encryption
 from discord.ext import commands
 
 # basic setup
