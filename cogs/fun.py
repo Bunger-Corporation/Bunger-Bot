@@ -33,9 +33,9 @@ class fun_cog(commands.Cog):
             await ctx.send("I'm not a very big fan of urls:(")
             return
 
-        text = "".join(filter(str.isalnum, text))
+        text = "".join([c for c in text if c.isalnum() or c == " "])
 
-        if text == "":
+        if len(text) == 0 or not any(c.isalnum() for c in text):
             await ctx.send(embed=embeds.craft("No text provided!", discord.Color.red()))
             return
 
