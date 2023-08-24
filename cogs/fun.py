@@ -28,7 +28,7 @@ class fun_cog(commands.Cog):
         await ctx.send(embed=embeds.craft(f"You flipped a coin... it landed on {random.choice(sides)}!"))
 
     @commands.command()
-    async def repeat(self, ctx, *, text):
+    async def repeat(self, ctx, *, text = ""):
         if text.startswith("http://") or text.startswith("https://") or text.startswith("www."):
             await ctx.send("I'm not a very big fan of urls:(")
             return
