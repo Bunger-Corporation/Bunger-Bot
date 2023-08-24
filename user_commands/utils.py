@@ -3,9 +3,6 @@ import math
 from helpers import embeds
 from discord.ext import commands
 
-#todo command handler class, its a category with sub commands
-#then we can just go through all commands and check for matching name
-
 class utils_cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
