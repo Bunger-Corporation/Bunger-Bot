@@ -2,7 +2,7 @@ import os
 import dotenv
 import discord
 from helpers import presence
-from commands import utils, encoding
+from commands import utils, encoding, encryption
 import commands
 
 # basic setup
@@ -21,7 +21,8 @@ async def on_message(message):
     if message.content[0] != ".":
         return
     
-    #await utils.on_message(bot, message)
+    await utils.on_message(bot, message)
     await encoding.on_message(bot, message)
+    await encryption.on_message(bot, message)
 
 bot.run(os.getenv("BOT_TOKEN"))
