@@ -26,3 +26,13 @@ class fun_cog(commands.Cog):
     async def coinflip(self, ctx):
         sides = ["heads", "tails"]
         await ctx.send(embed=embeds.craft(f"You flipped a coin... it landed on {random.choice(sides)}!"))
+
+    @commands.command()
+    async def repeat(self, ctx, *, text):
+        text = "".join(filter(str.isalnum, text))
+
+        if text == "":
+            await ctx.send(embed=embeds.craft("No text provided!", discord.Color.red()))
+            return
+
+        await ctx.send(text)
